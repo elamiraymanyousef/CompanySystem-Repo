@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<style>
+    body {
+        background: url('/images/privacy-bg.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .privacy-container {
+        max-width: 1100px; /* زيادة عرض الحاوية */
+        background: rgba(0, 0, 0, 0.888); /* تغيير الخلفية إلى أسود مع شفافية */
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+        margin: 100px auto;
+        text-align: left;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .privacy-container:hover {
+            box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+    h1 {
+        font-size: 36px;
+        font-weight: bold;
+        color: #fff; /* جعل النص أبيض */
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    p {
+        font-size: 18px;
+        color: #ddd; /* جعل النص لونه أخف قليلاً */
+        line-height: 1.6;
+        text-align: justify;
+    }
+
+    .privacy-section {
+        margin-top: 30px;
+        padding: 15px 0;
+        border-bottom: 2px solid #444; /* تغيير اللون */
+    }
+
+        .privacy-section:last-child {
+            border-bottom: none;
+        }
+
+        .privacy-section h4 {
+            color: #fff; /* تغيير اللون ليكون أبيض */
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .privacy-section p {
+            font-size: 16px;
+            color: #bbb; /* جعل النص لونه أخف */
+        }
+
+    .text-primary {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+        .text-primary:hover {
+            color: #0056b3;
+        }
+
+    /* Responsive Design */
+    </style>
+
+<div class="privacy-container">
+    <h1>@ViewData["Title"]</h1>
+    <p>We respect your privacy and are committed to protecting your personal data. Below is an overview of how we handle your information.</p>
+
+    <div class="privacy-section">
+        <h4>🔍 Information We Collect</h4>
+        <p>We collect basic user information such as email and browsing activity to enhance your experience on our platform.</p>
+    </div>
+
+    <div class="privacy-section">
+        <h4>🛡️ How We Protect Your Data</h4>
+        <p>Your data is securely stored and protected with industry-standard encryption techniques. We are dedicated to ensuring your privacy is safeguarded at all times.</p>
+    </div>
+
+    <div class="privacy-section">
+        <h4>📩 Contact Us</h4>
+        <p>If you have any questions or concerns about your data, please <a href="/Contact" class="text-primary">contact us</a>.</p>
+    </div>
+</div>

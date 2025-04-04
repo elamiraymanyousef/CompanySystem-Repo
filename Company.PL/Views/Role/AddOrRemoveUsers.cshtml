@@ -1,0 +1,141 @@
+﻿@* @using Company.PL.ViewModels
+
+@model List<UsersInRoleViewModel>
+@{
+    ViewData["Title"] = "AddOrRemoveUsers";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+@for( int i=0; i<Model.Count; i++)
+{
+    <div class=" form-group">
+        <input asp-for="@Model[i].IsSelected" />
+        <lable asp-for="@Model[i].IsSelected">@Model[i].UserName</lable>
+    </div>
+}
+
+ *@
+ @using Company.PL.ViewModels
+
+@model List<UsersInRoleViewModel>
+
+@{
+    ViewData["Title"] = "AddOrRemoveUsers";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+    var RoleId = ViewData["roleId"] as string;
+}
+
+<h2 class="text-center mb-4">Manage Role Users</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-lg rounded-3">
+                <div class="card-body">
+                    <form asp-action="AddOrRemoveUsers" asp-route-roleId="@RoleId">
+                    @* <form asp-action="AddOrRemoveUsers" asp-route-roleId="@roleId" method="post"> *@
+
+                        <div class="list-group">
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <label class="list-group-item d-flex align-items-center gap-2">
+                                    <input asp-for="@Model[i].IsSelected" class="form-check-input mt-0">
+                                    <span class="fw-bold">@Model[i].UserName</span>
+                                </label>
+
+                                <input type="hidden" asp-for="@Model[i].UserId" />  
+                                <input type="hidden" asp-for="@Model[i].UserName" />
+
+                            }
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-3">
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                           @*  <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a> *@
+                            <a asp-action="Edit" asp-route-id="@RoleId" class="btn btn-secondary ms-2">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        font-family: Arial, sans-serif;
+    }
+
+    .main-agileinfo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .agileits-top {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+        backdrop-filter: blur(10px);
+    }
+
+    .text {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: none;
+        background: rgba(255, 255, 255, 0.3);
+        color: white;
+        font-size: 16px;
+    }
+
+        .text::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+    .wthree-text {
+        text-align: left;
+        font-size: 14px;
+        margin-bottom: 15px;
+        color: white;
+    }
+
+    input[type="submit"] {
+        background: #ff4081;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+        input[type="submit"]:hover {
+            background: #e91e63;
+        }
+
+    p {
+        margin-top: 10px;
+        font-size: 14px;
+        color: white;
+    }
+
+        p a {
+            color: #ff4081;
+            text-decoration: none;
+        }
+
+            p a:hover {
+                text-decoration: underline;
+            }
+</style>
+
