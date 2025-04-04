@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Department>
+<table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(D => D.Code)</th>
+            <th>@Html.DisplayNameFor(D => D.Name)</th>
+            <th>@Html.DisplayNameFor(D => D.CreateAt)</th>
+            <th>Details</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var department in Model)
+        {
+            <tr>
+                <td>@department.Code</td>
+                <td>@department.Name</td>
+                <td>@department.CreateAt</td>
+                <td>
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@department.Id">Details</a>
+                </td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@department.Id">Update</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@department.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

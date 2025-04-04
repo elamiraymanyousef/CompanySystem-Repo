@@ -100,3 +100,26 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    $(document).ready(function () {
+        const searchBar = $('#SearchName');
+        const table = $('table');
+
+        searchBar.on('keyup', function (event) {
+            var searchValue = searchBar.val();
+
+            $.ajax({
+                url: '/User/Search',
+                type: 'Get',
+               data: { SearchName: searchValue },
+                success: function (result) {
+                    table.html(result);
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>

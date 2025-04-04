@@ -212,3 +212,28 @@ else
         <h3>There are NO Departments :(</h3>
     </div>
 }
+
+
+<script>
+    $(document).ready(function () {
+        const searchBar = $('#SearchName');
+        const table = $('table');
+
+        searchBar.on('keyup', function (event) {
+            var searchValue = searchBar.val();
+
+            $.ajax({
+              url: '/Department/Search',
+
+                type: 'Get',
+               data: { SearchName: searchValue },
+                success: function (result) {
+                    table.html(result);
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>

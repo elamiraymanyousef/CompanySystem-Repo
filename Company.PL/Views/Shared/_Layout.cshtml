@@ -120,7 +120,13 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+
+
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
             @RenderBody()
+
+
         </main>
     </div>
 
@@ -129,8 +135,8 @@
             &copy; 2025 - Company.PL - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+@*     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+ *@    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @* for validation *@
@@ -162,5 +168,6 @@
             border-color: red;
         }
 </style>
+
 </html>
 

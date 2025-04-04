@@ -58,6 +58,44 @@ namespace Company.PL.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Search(string? SearchName)
+        {
+            IEnumerable<UserToReturnDTO> users;
+
+            if (string.IsNullOrEmpty(SearchName))
+            {
+                users = _userManager.Users.Select(U => new UserToReturnDTO()
+                {
+                    Id = U.Id,
+                    UserName = U.UserName,
+                    FirstName = U.FirstName,
+                    LastName = U.LastName,
+                    Email = U.Email,
+                    Roles = _userManager.GetRolesAsync(U).Result,
+                    ImageName = string.IsNullOrEmpty(U.ImageName) ? "OIP.jpg" : U.ImageName, // ✅ تعيين الصورة الافتراضية
+
+                }).ToList();
+            }
+            else
+            {
+                // for search by name
+                users = _userManager.Users.Select(U => new UserToReturnDTO()
+                {
+                    Id = U.Id,
+                    UserName = U.UserName,
+                    FirstName = U.FirstName,
+                    LastName = U.LastName,
+                    Email = U.Email,
+                    Roles = _userManager.GetRolesAsync(U).Result,
+                    ImageName = U.ImageName
+                }).Where(U => U.FirstName.ToLower().Contains(SearchName.ToLower())).ToList();
+            }
+
+
+            return PartialView("EmployeePartialView/UserPartialView", users);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Details(string? id, string viewStat = "Details")
         {
             if (id is null) return BadRequest( "Invalid Id");

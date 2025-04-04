@@ -52,6 +52,23 @@ namespace Company.PL.Controllers
 
 
 
+        [HttpGet] // GET: Department/search
+        public async Task<IActionResult> Search(string? SearchName)
+        {
+            IEnumerable<Department> departments;
+            if (string.IsNullOrEmpty(SearchName))
+            {
+                departments = await _unitOfWork.departmentRepository.GetAllAsync();
+            }
+            else
+            {
+                departments = await _unitOfWork.departmentRepository.GetDepartmentByNameAsync(SearchName);
+            }
+            return PartialView("DeptPartialView", departments);
+        }
+
+
+
 
         [HttpGet] // GET: Department/Create
         public IActionResult Create()

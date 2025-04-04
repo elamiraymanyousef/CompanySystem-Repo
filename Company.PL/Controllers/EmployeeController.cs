@@ -53,6 +53,23 @@ namespace Company.PL.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> Search(string? SearchName)
+        {
+            IEnumerable<Employee> employees;
+            if (string.IsNullOrEmpty(SearchName))
+            {
+                employees = await _unitOfWork.employeeRepository.GetAllAsync();
+            }
+            else
+            {
+                // for search by name
+                employees = await _unitOfWork.employeeRepository.GetByNameAsync(SearchName);
+            }
+
+
+            return PartialView("EmployeePartialView/EmpTaplePartialView", employees);
+        }
 
         [HttpGet]
         public IActionResult Create(/*[FromServices] IDepartmentRepository _departmentRepositor*/)
